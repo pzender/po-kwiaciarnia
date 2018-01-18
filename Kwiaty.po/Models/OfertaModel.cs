@@ -7,6 +7,6 @@ namespace Kwiaty.po.Models
 {
     public class OfertaModel
     {
-
+        public List<ProduktModel> ProduktyWOfercie;
     }
 }

@@ -1,0 +1,8 @@
+﻿
+@{
+    ViewData["Title"] = "Return";
+}
+<div style="text-align:center">
+    <p class="success">Twoje zamówienie zostało złożone pomyślnie</p>
+    <input id="Button1" type="button" value="Wróć do sklepu" onclick="location.href='@Url.Action("Index", "Customer")'" class="btn btn-success" />
+</div>

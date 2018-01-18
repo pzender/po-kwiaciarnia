@@ -7,5 +7,8 @@ namespace Kwiaty.po.Models
 {
     public class KlientModel
     {
+        public string Email { get; set; }
+        ZamowienieModel Koszyk { get; set; }
+        List<ZamowienieModel> Zamowienia { get; set; }
     }
 }
