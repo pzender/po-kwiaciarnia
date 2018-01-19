@@ -25,6 +25,17 @@ namespace Kwiaty.po.Models
                 return wartosc;
             }
         }
+
+        public ZamowienieModel()
+        {
+            var oferta = OfertaModel.ExampleOffer();
+            PozycjeZamowienia = new List<PozycjaZamowieniaModel>
+            {
+                new PozycjaZamowieniaModel(oferta.ProduktyWOfercie[1], 2),
+                new PozycjaZamowieniaModel(oferta.ProduktyWOfercie[2], 1)
+            };
+        }
+
         public enum StatusZamowienia { przyjete, wyslane, doOdbioru, zrealizowane}
         public enum SposobDostawy { wskazanyAdres, odbiorOsobisty}
         public enum SposobPlatnosci { gotowka, karta}

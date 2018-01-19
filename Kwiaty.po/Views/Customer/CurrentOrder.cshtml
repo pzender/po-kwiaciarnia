@@ -1,7 +1,29 @@
-﻿
+﻿@model Kwiaty.po.Models.KlientModel
 @{
     ViewData["Title"] = "CurrentOrder";
 }
-
-<h2>CurrentOrder</h2>
-
+<div style="width:100%; overflow:hidden; padding:10px; ">
+    <table style="width:60%; float:left; margin-right:20px">
+        <thead>
+            <tr style="font-weight:bold; border-bottom:solid"><td>Produkt</td><td>Ilość</td><td>Wartość</td><td></td></tr>
+        </thead>
+        @foreach (PozycjaZamowieniaModel p in Model.Koszyk.PozycjeZamowienia)
+        {
+            int i = 0;
+            <tr>
+                <td>@p.Produkt.Nazwa</td>
+                <td>@p.IloscSztuk</td>
+                <td>@p.WartoscPozycji.ToString("c")</td>
+                <td><input id="@("Checkbox"+i)" type="checkbox" /></td>
+            </tr>
+            i++;
+        }
+        <tr style="font-weight:bold; border-top:solid">
+            <td>Razem: </td><td></td><td>@Model.Koszyk.WartoscZamowienia.ToString("c")</td><td></td>
+        </tr>
+    </table>
+    <div style="float:right; width:30%; ">
+        <input id="Button1" type="button" value="Usuń zaznaczone" class="btn btn-secondary" style="width:100%"/><br /><br />
+        <input id="Button2" type="button" value="Zamów" class="btn btn-secondary" style="width:100%" onclick="@Url.Action("SetEmail", "Customer")"/>
+    </div>
+</div>

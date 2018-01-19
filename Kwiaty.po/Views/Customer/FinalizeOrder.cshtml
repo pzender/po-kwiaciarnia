@@ -3,5 +3,130 @@
     ViewData["Title"] = "FinalizeOrder";
 }
 
-<h2>FinalizeOrder</h2>
+<div id="SposobRealizacji" style="width:100%; overflow:hidden">
+    <form style="max-width:800px">
+        <table style="width:100%; overflow:hidden;">
+            <tr>
+                <td style="width:40%; vertical-align:top">
+                    <fieldset id="SposobDostawy-Wybor">
+                        <legend>Wybierz sposób realizacji: </legend>
+                        <input type="radio" name="SposobDostawy" value="@ZamowienieModel.SposobDostawy.wskazanyAdres" onclick="showAdresForm()" /> Chcę wskazać adres dostawy.<br />
+                        <input type="radio" name="SposobDostawy" value="@ZamowienieModel.SposobDostawy.odbiorOsobisty" onclick="showPunktForm()" /> Chcę odebrać zamówienie w punkcie. <br />
+                    </fieldset>
+                </td>
+                <td style="height:200px; vertical-align:top">
+                    <fieldset id="SposobDostawy-Adres" style="border: 2px solid; padding:10px; display:none; ">
+                        <legend>Adres dostawy: </legend>
+                        <label for="SposobDostawy-Adres-Name" style="width:30%">Imię i nazwisko: </label><input id="SposobDostawy-Adres-Name" class="textfield" style="width:70%" /><br />
+                        <label for="SposobDostawy-Adres-Street" style="width:30%">Ulica, nr: </label><input id="SposobDostawy-Adres-Street" class="textfield" style="width:70%" /><br />
+                        <label for="SposobDostawy-Adres-Code" style="width:30%">Kod pocztowy: </label><input id="SposobDostawy-Adres-Code" class="textfield" style="width:70%" /><br />
+                        <label for="SposobDostawy-Adres-City" style="width:30%">Miasto: </label><input id="SposobDostawy-Adres-City" class="textfield" style="width:70%" /><br />
+                    </fieldset>
+                    <fieldset id="SposobDostawy-Punkt" style="border: 2px solid; padding:10px; display:none">
+                        <legend>Punkt odbioru: </legend>
+                        <input type="radio" name="SposobDostawy-Punkt" value="Punkt1" /> Punkt 1. <br />
+                        <input type="radio" name="SposobDostawy-Punkt" value="Punkt2" /> Punkt 2. <br />
+                        <input type="radio" name="SposobDostawy-Punkt" value="Punkt3" /> Punkt 3. <br />
+                        <input type="radio" name="SposobDostawy-Punkt" value="Punkt4" /> Punkt 4. <br />
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <fieldset id="SposobDostawy-Next" style="padding:10px; display:none">
+                        <input id="Button-ShowDeliveryForm" type="button" value="Dalej" onclick="showPaymentForm()" class="btn btn-secondary" />
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:40%; vertical-align:top">
+                    <fieldset id="SposobPlatnosci-Wybor" style="float:left; margin-right:30px; display:none; ;">
+                        <legend>Wybierz sposób płatności: </legend>
+                        <input type="radio" name="SposobPlatnosci" value="@ZamowienieModel.SposobPlatnosci.gotowka" onclick="showCashForm()" /> Chcę zapłacić gotówką przy odbiorze. <br />
+                        <input type="radio" name="SposobPlatnosci" value="@ZamowienieModel.SposobPlatnosci.karta" onclick="showCardForm()" /> Chcę zapłacić kartą przez internet. <br />
+                    </fieldset>
+                </td>
+                <td>
+                    <fieldset id="SposobPlatnosci-Karta" style="border: 2px solid; padding:10px; display:none">
+                        <legend>Dane karty: </legend>
+                        <label for="SposobPlatnosci-Karta-Wlasc" style="width:30%">Właściciel:    </label><input id="SposobPlatnosci-Karta-Wlasc" class="textfield" style="width:70%" /><br />
+                        <label for="SposobPlatnosci-Karta-Numer" style="width:30%">Nr karty:      </label><input id="SposobPlatnosci-Karta-Numer" class="textfield" style="width:70%" /><br />
+                        <label for="SposobPlatnosci-Karta-DataW" style="width:30%">Data ważności: </label>
+                        <select style="width:30%">
+                            @for (int i = 0; i < 12; i++)
+                            {
+                                <option>@(i+1)</option>
+                            }
+                        </select>/ 
+                        <select style="width:30%">
+                            @for (int i = 0; i < 12; i++) 
+                            {
+                                <option>@(i+2018)</option>
+}                           }
+                        </select>
+                        
+                        <br />
+                        <label for="SposobPlatnosci-Karta-NrCVS" style="width:30%">Nr CVS:        </label><input id="SposobPlatnosci-Karta-NrCVS" class="textfield" style="width:70%" /><br />
+                    </fieldset>
+                    <fieldset id="SposobPlatnosci-Gotowka" style="display:none">
+                        
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <fieldset id="SposobPlatnosci-Next" style="padding:10px; display:none">
+                        <input id="Button-ShowDeliveryForm" type="button" value="Zamów" onclick="" class="btn btn-secondary" />
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+    function showAdresForm() {
+        var formToShow = document.getElementById("SposobDostawy-Adres");
+        formToShow.style.display = "block";
+        var formToHide = document.getElementById("SposobDostawy-Punkt");
+        formToHide.style.display = "none";
+        var button = document.getElementById("SposobDostawy-Next");
+        button.style.display = "block";
+    }
 
+    function showPunktForm() {
+        var formToShow = document.getElementById("SposobDostawy-Punkt");
+        formToShow.style.display = "block";
+        var formToHide = document.getElementById("SposobDostawy-Adres");
+        formToHide.style.display = "none";
+        var button = document.getElementById("SposobDostawy-Next");
+        button.style.display = "block";
+    }
+
+    function showPaymentForm() {
+
+            var formToShow = document.getElementById("SposobPlatnosci-Wybor");
+            formToShow.style.display = "block";
+
+    }
+    function showCashForm() {
+        var formToShow = document.getElementById("SposobPlatnosci-Gotowka");
+        formToShow.style.display = "block";
+        var formToHide = document.getElementById("SposobPlatnosci-Karta");
+        formToHide.style.display = "none";
+        var button = document.getElementById("SposobPlatnosci-Next");
+        button.style.display = "block";
+    }
+
+    function showCardForm() {
+        var formToShow = document.getElementById("SposobPlatnosci-Karta");
+        formToShow.style.display = "block";
+        var formToHide = document.getElementById("SposobPlatnosci-Gotowka");
+        formToHide.style.display = "none";
+        var button = document.getElementById("SposobPlatnosci-Next");
+        button.style.display = "block";
+    }
+
+
+</script>

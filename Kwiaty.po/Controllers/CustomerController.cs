@@ -10,6 +10,7 @@ namespace Kwiaty.po.Controllers
     public class CustomerController : Controller
     {
         OfertaModel oferta = OfertaModel.ExampleOffer();
+        KlientModel klient = new KlientModel();
 
         public IActionResult Index()
         {
@@ -25,7 +26,7 @@ namespace Kwiaty.po.Controllers
 
         public IActionResult CurrentOrder()
         {
-            return View();
+            return View(klient);
         }
 
         public IActionResult FinalizeOrder()
@@ -38,5 +39,10 @@ namespace Kwiaty.po.Controllers
             return View();
         }
 
+        public IActionResult SetEmail()
+        {
+            klient.Email = "AAAAAAAAAAAAAAA@ex.com";
+            return CurrentOrder();
+        }
     }
 }
