@@ -11,13 +11,14 @@ namespace Kwiaty.po.Models
         public double Cena { get; set; }
         public string Nazwa { get; set; }
         public string Opis { get; set; }
-
-
-        public ProduktModel(double cena, string nazwa, string opis)
+        public string PictureFile { get; set; }
+        
+        public ProduktModel(double cena, string nazwa, string pictureFile, string opis)
         {
             Cena = cena;
             Nazwa = nazwa;
             Opis = opis;
+            PictureFile = pictureFile;
         }
 
         

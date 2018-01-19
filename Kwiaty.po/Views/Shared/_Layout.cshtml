@@ -41,15 +41,12 @@
                     <a class="nav-link" href="#">About</a>
                 </li>
             </ul>
-            <div style="float:right; color: white " class="nav-link">
-                Witaj, KLIENT! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="Button1" type="button" value="Przejdź do koszyka" onclick="location.href='@Url.Action("CurrentOrder", "Customer")'" class="btn btn-secondary" />
-            </div>
         </div>
     </nav>
 
     <div class="container body-content" style=" margin-top: 20px;">
         @RenderBody()
+
         <hr />
         <footer>
             <p>&copy; 2018 - Kwiaty.po</p>

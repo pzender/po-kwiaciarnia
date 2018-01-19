@@ -9,15 +9,18 @@ namespace Kwiaty.po.Controllers
 {
     public class CustomerController : Controller
     {
+        OfertaModel oferta = OfertaModel.ExampleOffer();
+
         public IActionResult Index()
         {
-            return View();
+         
+            return View(oferta);
         }
 
-        public IActionResult AboutProduct()
+        public IActionResult AboutProduct(int Id)
         {
-            var Produkt = new ProduktModel(99.99, "Example", "This is an example product");
-            return View(Produkt);
+
+            return View(oferta.ProduktyWOfercie[Id]);
         }
 
         public IActionResult CurrentOrder()

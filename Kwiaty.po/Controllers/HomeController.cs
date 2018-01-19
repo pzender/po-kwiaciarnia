@@ -10,9 +10,12 @@ namespace Kwiaty.po.Controllers
 {
     public class HomeController : Controller
     {
+        OfertaModel oferta = OfertaModel.ExampleOffer();
+
         public IActionResult Index()
         {
-            return View();
+
+            return View(oferta);
         }
 
         public IActionResult About()

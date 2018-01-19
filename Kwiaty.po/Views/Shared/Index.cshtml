@@ -1,7 +1,28 @@
-﻿
+﻿@model Kwiaty.po.Models.OfertaModel
 @{
-    ViewData["Title"] = "BrowseProducts";
+    ViewData["Title"] = "Oferta";
+    int rows = (Model.ProduktyWOfercie.Count / 3) + (Model.ProduktyWOfercie.Count % 3 > 0 ? 1 : 0);
 }
 
-<h2>BrowseProducts</h2>
+<h2>Oferta</h2>
 
+<table style="width:100%">
+    @for(int i = 0; i < rows; i++)
+    {
+        <tr style="">
+            @for(int j = 0; j < 3 && 3*i+j < Model.ProduktyWOfercie.Count; j++)
+            {
+                <td style="text-align:center">
+                    <a href="@Url.Action("AboutProduct", "Customer", new { id = 3*i+j})">
+                        <img src="../../images/@Model.ProduktyWOfercie[3*i+j].PictureFile" alt="img not found" style="width:100%; margin-bottom:10px"/> 
+                        @Model.ProduktyWOfercie[3*i+j].Nazwa 
+                    </a>
+                    <br /><i>@Model.ProduktyWOfercie[3 * i + j].Cena.ToString("c")</i>
+                </td>
+
+            }
+        </tr>
+
+    }
+
+</table>

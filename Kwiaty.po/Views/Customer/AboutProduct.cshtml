@@ -1,9 +1,15 @@
 ﻿@model Kwiaty.po.Models.ProduktModel
 @{
-    ViewData["Title"] = "AboutProduct";
+    ViewData["Title"] = Model.Nazwa;
+    
 }
 
-<h2>@Model.Nazwa</h2>
-<p>@Model.Cena</p>
-<p>@Model.Opis</p>
-
+<div style="width:100%; overflow:hidden; padding:10px">
+    <img src="../../images/@Model.PictureFile" alt="img not found" style="width:30%; float:left; margin-right:10px" />
+    <div style="height:inherit; float:right; overflow:hidden; "><input id="Button1" type="button" value="Dodaj do koszyka" class="btn btn-secondary"/></div>
+    <div style="float:none;">
+        <h2>@Model.Nazwa</h2>
+        <p>Cena: @Model.Cena.ToString("c")</p>
+        <p>@Model.Opis</p>
+    </div>
+</div>
